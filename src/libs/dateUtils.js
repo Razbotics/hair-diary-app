@@ -5,10 +5,12 @@ export function getCalendarDates(date) {
 
   const _date = startDay.clone().subtract(1, "day");
   while (_date.isBefore(endDay, "day")) {
-    const currentDate = parseInt(_date.add(1, "day").clone().format("D"));
+    const currentMoment = _date.add(1, "day").clone();
+    const currentDate = parseInt(currentMoment.format("D"));
     const data = {
       date: currentDate,
       thisMonth: true,
+      raw: currentMoment.format("YYYY-MM-DD"),
     };
     a.push(data);
   }

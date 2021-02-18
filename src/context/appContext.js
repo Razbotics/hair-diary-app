@@ -1,19 +1,20 @@
 import moment from "moment";
-import React, { useContext, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
+import { initialState, reducer } from "../store/reducer";
 
 const AppStateContext = React.createContext();
-const AppSetStateContext = React.createContext();
+const AppDispatchContext = React.createContext();
 
-export const useAppMoment = () => useContext(AppStateContext);
-export const useAppSetMoment = () => useContext(AppSetStateContext);
+export const useAppState = () => useContext(AppStateContext);
+export const useAppDispatcher = () => useContext(AppDispatchContext);
 
 function AppContext({ children }) {
-  const [currentMoment, setCurrentMoment] = useState(moment());
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <AppStateContext.Provider value={currentMoment}>
-      <AppSetStateContext.Provider value={setCurrentMoment}>
+    <AppStateContext.Provider value={state}>
+      <AppDispatchContext.Provider value={dispatch}>
         {children}
-      </AppSetStateContext.Provider>
+      </AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
 }

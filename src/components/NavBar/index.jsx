@@ -1,10 +1,10 @@
 import React from "react";
-import { useAppMoment } from "../../context/appContext";
+import { useAppState } from "../../context/appContext";
 import { currMonthName, currYear } from "../../libs/dateUtils";
 import "./NavBar.css";
 
 function NavBar() {
-  const moment = useAppMoment();
+  const { date } = useAppState();
 
   return (
     <div className="nav-container">
@@ -14,8 +14,8 @@ function NavBar() {
         <h2>diary</h2>
       </div>
       <div className="nav-date">
-        <h2 className="bold">{currMonthName(moment)}</h2>
-        <h2>{currYear(moment)}</h2>
+        <h2 className="bold">{currMonthName(date)}</h2>
+        <h2>{currYear(date)}</h2>
       </div>
     </div>
   );

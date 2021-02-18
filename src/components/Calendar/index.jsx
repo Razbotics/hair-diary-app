@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppMoment, useAppSetMoment } from "../../context/appContext";
+import { useAppDispatcher, useAppState } from "../../context/appContext";
 import {
   currMonthName,
   currYear,
@@ -8,12 +8,15 @@ import {
 import WeekBar from "./WeekBar";
 import "./Calendar.css";
 import CalendarElement from "./CalendarElement";
+import { actionTypes } from "../../store/reducer";
+import { getPosts } from "../../services/postService";
+import moment from "moment";
 
 function Calendar() {
   const containerRef = useRef();
   const [moments, setMoments] = useState([]);
-  const date = useAppMoment();
-  const setMoment = useAppSetMoment();
+  const { date } = useAppState();
+  const dispatch = useAppDispatcher();
 
   const handleOnScroll = (event) => {
     const totalScroll = containerRef.current.scrollHeight;
@@ -25,33 +28,33 @@ function Calendar() {
     const month = date;
     const nextMonth = date.clone().add(1, "month");
 
-    if (currentScroll < scrollDivs - padding) setMoment(prevMonth);
+    if (currentScroll < scrollDivs - padding)
+      dispatch(actionTypes.editDate(prevMonth));
     else if (
       currentScroll >= scrollDivs &&
       currentScroll < 2 * scrollDivs - padding
     )
-      setMoment(month);
-    else if (currentScroll >= 2 * scrollDivs) setMoment(nextMonth);
+      dispatch(actionTypes.editDate(month));
+    else if (currentScroll >= 2 * scrollDivs)
+      dispatch(actionTypes.editDate(nextMonth));
   };
+
+  useEffect(async () => {
+    const resp = await getPosts();
+    const { continuationtoken, posts } = resp.responseobjects[0];
+    dispatch(actionTypes.setPosts(posts));
+    dispatch(actionTypes.setContinuationToken(continuationtoken));
+    dispatch(actionTypes.editDate(moment(posts[0].calendardatetime)));
+  }, []);
 
   useEffect(() => {
     const prevMonth = date.clone().subtract(1, "month");
     const month = date;
     const nextMonth = date.clone().add(1, "month");
-    const moments = [
-      {
-        id: `${currMonthName(prevMonth)}-${currYear(prevMonth)}`,
-        dates: getCalendarDates(prevMonth),
-      },
-      {
-        id: `${currMonthName(month)}-${currYear(month)}`,
-        dates: getCalendarDates(month),
-      },
-      {
-        id: `${currMonthName(nextMonth)}-${currYear(nextMonth)}`,
-        dates: getCalendarDates(nextMonth),
-      },
-    ];
+    const moments = [prevMonth, month, nextMonth].map((val) => ({
+      id: `${currMonthName(val)}-${currYear(val)}`,
+      dates: getCalendarDates(val),
+    }));
     setMoments(moments);
   }, [date]);
 
@@ -70,7 +73,7 @@ function Calendar() {
             key={data.id}
             id={data.id}
             current={data.id === `${currMonthName(date)}-${currYear(date)}`}
-            days={data.dates}
+            days={data.dates.slice(0, 35)}
           />
         ))}
       </div>
