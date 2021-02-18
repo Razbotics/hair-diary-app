@@ -1,0 +1,43 @@
+.main-container {
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+.week-container {
+  height: 50px;
+}
+
+.calendar-container {
+  overflow: scroll;
+  height: 85vh;
+}
+
+.week-grid-container {
+  display: grid;
+  background-color: rgb(230, 230, 230);
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: 100%;
+  border: 1px solid rgb(129, 129, 129);
+}
+
+.grid-item {
+  box-sizing: border-box;
+  border: 1px solid rgb(197, 197, 197);
+  text-align: center;
+  padding: 5px;
+}
+
+.shade {
+  background-color: rgb(212, 212, 212);
+}
+
+.light {
+  color: rgb(133, 133, 133);
+}

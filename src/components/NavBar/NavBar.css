@@ -1,0 +1,22 @@
+.nav-container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 50px;
+  justify-content: space-between;
+}
+
+.nav-container h2 {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: 500;
+  color: rgb(70, 66, 66);
+}
+
+h2.blue {
+  color: cyan;
+}
+
+h2.bold {
+  font-weight: bold;
+}
