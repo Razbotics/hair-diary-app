@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-function CalendarElement({ days }) {
+function CalendarElement({ days, current }) {
+  const elemetRef = useRef();
+
+  useEffect(() => {
+    if (!current) return;
+    elemetRef.current.scrollIntoView();
+  }, []);
+
   const getDayClass = (index, day) => {
     let className = "grid-item";
     if (index % 7 === 0) className += " shade";
@@ -9,7 +16,7 @@ function CalendarElement({ days }) {
   };
 
   return (
-    <div className="grid-container">
+    <div ref={elemetRef} className="grid-container">
       {days.map((day, index) => (
         <div key={index} className={getDayClass(index, day)}>
           {day.date}
