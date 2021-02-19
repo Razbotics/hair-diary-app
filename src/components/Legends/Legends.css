@@ -1,17 +1,20 @@
 span.legend {
+  display: inline-flex;
   margin: 0 2px;
   color: #000;
   border-radius: 100%;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 span.big {
-  width: 2.5rem;
-  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
 }
 
 span.small {
   width: 1.2rem;
-  height: 1rem;
+  height: 1.2rem;
   font-size: 0.8rem;
 }

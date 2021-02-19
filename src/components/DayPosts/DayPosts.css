@@ -1,0 +1,102 @@
+.daypost-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.close-btn {
+  display: flex;
+  background-color: tomato;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-btn:hover {
+  cursor: pointer;
+}
+
+.card {
+  margin-top: 100px;
+  display: flex;
+  width: 350px;
+  height: 600px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease-in;
+}
+
+.card-current {
+  position: absolute;
+  z-index: 150;
+}
+
+.card-left {
+  position: relative;
+  right: 120px;
+  opacity: 0.3;
+  transform: scale(0.9);
+}
+
+.card-right {
+  position: relative;
+  left: 120px;
+  opacity: 0.3;
+  transform: scale(0.9);
+}
+
+.card__image-container {
+  width: 100%;
+  height: 60%;
+}
+
+.card__image-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.card__info {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+}
+
+.card__legends {
+  display: flex;
+}
+
+.card__rating {
+  display: flex;
+}
+
+.card__content {
+  color: black;
+  padding: 10px;
+}
+
+.card__content h2 {
+  margin: 0;
+}
+
+.card__content p {
+  font-weight: 400;
+  font-size: 1.1rem;
+}

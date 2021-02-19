@@ -23,6 +23,10 @@ export function getCalendarDates(date) {
   return a;
 }
 
+export function currDate(date) {
+  return date.format("DD");
+}
+
 export function currMonthName(date) {
   return date.format("MMMM");
 }

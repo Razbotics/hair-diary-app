@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatcher, useAppState } from "../../context/appContext";
 import {
   currMonthName,
@@ -42,6 +42,7 @@ function Calendar() {
   useEffect(async () => {
     const resp = await getPosts();
     const { continuationtoken, posts } = resp.responseobjects[0];
+    console.log(posts);
     dispatch(actionTypes.setPosts(posts));
     dispatch(actionTypes.setContinuationToken(continuationtoken));
     dispatch(actionTypes.editDate(moment(posts[0].calendardatetime)));

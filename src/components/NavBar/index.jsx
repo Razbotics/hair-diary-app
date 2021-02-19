@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useAppDispatcher, useAppState } from "../../context/appContext";
 import { currMonthName, currYear } from "../../libs/dateUtils";
 import { getPosts } from "../../services/postService";
@@ -9,12 +9,20 @@ function NavBar() {
   const { posts, date, continuationToken } = useAppState();
   const dispatch = useAppDispatcher();
 
+  const filterDuplicates = (newPosts) => {
+    return newPosts.filter(
+      (newPost) => !posts.find((post) => newPost.id === post.id)
+    );
+  };
+
   const getNextPosts = async () => {
     try {
       const resp = await getPosts(continuationToken);
       const { continuationtoken, posts } = resp.responseobjects[0];
       if (!posts) return;
-      dispatch(actionTypes.setPosts(posts));
+      const newPosts = filterDuplicates(posts);
+      newPosts.length && console.log(newPosts);
+      dispatch(actionTypes.setPosts(newPosts));
       dispatch(actionTypes.setContinuationToken(continuationtoken));
     } catch (e) {
       console.log("Erron in fetching posts");
@@ -23,7 +31,7 @@ function NavBar() {
 
   if (posts.length) {
     const lastPost = posts[posts.length - 1];
-    const isAfter = date.isAfter(lastPost.calendardatetime);
+    const isAfter = date.isAfter(lastPost.calendardatetime, "month");
     if (isAfter) getNextPosts();
   }
 

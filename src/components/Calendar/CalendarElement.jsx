@@ -1,13 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-
+import React, { useEffect, useRef } from "react";
 import { useAppState } from "../../context/appContext";
-
 import TileElement from "./TileElement";
 
 function CalendarElement({ days, current }) {
