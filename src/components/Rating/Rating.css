@@ -1,0 +1,17 @@
+.rating-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rate-icon {
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
+
+.gold-icon {
+  color: #fcc203;
+}
+
+.gray-icon {
+  color: #c4c4c2;
+}

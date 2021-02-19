@@ -37,9 +37,9 @@ export async function getPosts(continuationtoken = null) {
           calendardatetime: {
             // Date Time of a particular post
             return: true, // please note: there can be multiple posts on a single day
-            sort: "descending", // you can sort fetched dates by ascending/descending.
+            sort: "ascending", // you can sort fetched dates by ascending/descending.
           },
-          maxitemcount: "20", //you can ask between 1 to 50 posts (max) at a time.
+          maxitemcount: "5", //you can ask between 1 to 50 posts (max) at a time.
           continuationtoken, //replace with the continuation token from response to get the next set
         },
       },

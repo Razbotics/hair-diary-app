@@ -1,0 +1,17 @@
+span.legend {
+  margin: 0 2px;
+  color: #000;
+  border-radius: 100%;
+  text-align: center;
+}
+
+span.big {
+  width: 2.5rem;
+  font-size: 2rem;
+}
+
+span.small {
+  width: 1.2rem;
+  height: 1rem;
+  font-size: 0.8rem;
+}

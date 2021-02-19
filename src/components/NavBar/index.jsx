@@ -1,10 +1,31 @@
 import React from "react";
-import { useAppState } from "../../context/appContext";
+import { useAppDispatcher, useAppState } from "../../context/appContext";
 import { currMonthName, currYear } from "../../libs/dateUtils";
+import { getPosts } from "../../services/postService";
+import { actionTypes } from "../../store/reducer";
 import "./NavBar.css";
 
 function NavBar() {
-  const { date } = useAppState();
+  const { posts, date, continuationToken } = useAppState();
+  const dispatch = useAppDispatcher();
+
+  const getNextPosts = async () => {
+    try {
+      const resp = await getPosts(continuationToken);
+      const { continuationtoken, posts } = resp.responseobjects[0];
+      if (!posts) return;
+      dispatch(actionTypes.setPosts(posts));
+      dispatch(actionTypes.setContinuationToken(continuationtoken));
+    } catch (e) {
+      console.log("Erron in fetching posts");
+    }
+  };
+
+  if (posts.length) {
+    const lastPost = posts[posts.length - 1];
+    const isAfter = date.isAfter(lastPost.calendardatetime);
+    if (isAfter) getNextPosts();
+  }
 
   return (
     <div className="nav-container">
