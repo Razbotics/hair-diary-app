@@ -73,3 +73,15 @@
   margin-top: 2px;
   justify-content: center;
 }
+
+@media screen and (max-height: 700px) {
+  .grid-container {
+    height: 120%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .grid-container {
+    height: 130%;
+  }
+}

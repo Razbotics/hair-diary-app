@@ -33,12 +33,22 @@
   }
 }
 
-@media screen and (max-height: 800px) {
+@media screen and (max-width: 400px) {
   .rate-icon {
     margin-right: 1px;
   }
 
   .small {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .rate-icon {
+    margin-right: 1px;
+  }
+
+  .big {
+    font-size: 0.8rem;
   }
 }

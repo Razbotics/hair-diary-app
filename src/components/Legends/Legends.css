@@ -37,14 +37,26 @@ span.small {
   }
 }
 
+@media screen and (max-width: 400px) {
+  span.legend {
+    margin: 0 0.5px;
+  }
+
+  span.small {
+    width: 0.5rem;
+    height: 0.5rem;
+    font-size: 0.3rem;
+  }
+}
+
 @media screen and (max-height: 800px) {
   span.legend {
     margin: 0 1px;
   }
 
-  span.small {
-    width: 0.7rem;
-    height: 0.7rem;
-    font-size: 0.6rem;
+  span.big {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
   }
 }
