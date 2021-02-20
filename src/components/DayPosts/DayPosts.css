@@ -38,7 +38,16 @@
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
-  transition: all 0.3s ease-in;
+  transition: all 0.4s ease-in;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 80vw;
+    height: 70vh;
+    max-width: 350px;
+    max-height: 600px;
+  }
 }
 
 .card-current {
@@ -48,16 +57,14 @@
 
 .card-left {
   position: relative;
-  right: 120px;
   opacity: 0.3;
-  transform: scale(0.9);
+  transform: translateX(-120px) scale(0.9);
 }
 
 .card-right {
   position: relative;
-  left: 120px;
   opacity: 0.3;
-  transform: scale(0.9);
+  transform: translateX(120px) scale(0.9);
 }
 
 .card__image-container {
@@ -99,4 +106,14 @@
 .card__content p {
   font-weight: 400;
   font-size: 1.1rem;
+}
+
+@media screen and (max-height: 750px) {
+  .card__content h2 {
+    font-size: 1.1rem;
+  }
+
+  .card__content p {
+    font-size: 0.9rem;
+  }
 }
