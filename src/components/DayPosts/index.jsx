@@ -12,8 +12,6 @@ function DayPosts() {
   const dispatch = useAppDispatcher();
 
   const handleOnSwipe = (event) => {
-    console.log(event);
-    console.log(currentCard);
     if (event.dir === "Left") {
       const index = currentCard + 1;
       if (index >= dayPosts.length) return;
