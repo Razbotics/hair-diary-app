@@ -1,0 +1,7 @@
+version: "3"
+services:
+  hair_diary_app:
+    build: .
+    command: serve -s build
+    ports:
+      - 6000:5000
