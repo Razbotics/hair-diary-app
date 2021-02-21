@@ -6,23 +6,18 @@ import { useAppDispatcher } from "../../context/appContext";
 import { actionTypes } from "../../store/reducer";
 
 function TileElement({ day, posts }) {
-  const dayPosts = [];
   const dispatch = useAppDispatcher();
-
-  posts.forEach((post) => {
-    if (day.raw === moment(post.calendardatetime).format("YYYY-MM-DD")) {
-      dayPosts.push(post);
-    }
-  });
+  const dayPostIndex = posts.findIndex(
+    (post) => day.raw === moment(post.calendardatetime).format("YYYY-MM-DD")
+  );
+  const dayPost = posts[dayPostIndex];
 
   const handleOnClick = () => {
-    console.log(dayPosts);
-    if (!dayPosts.length) return;
-    dispatch(actionTypes.setDayPosts(dayPosts));
+    console.log(dayPost);
+    dispatch(actionTypes.setDayPostIndex(dayPostIndex));
     dispatch(actionTypes.setDayPostsVisibility(true));
   };
 
-  const dayPost = dayPosts[0];
   return (
     <>
       <p>{day.date}</p>
@@ -32,7 +27,7 @@ function TileElement({ day, posts }) {
             <Rating rating={dayPost.rating} />
             <img
               className="image"
-              src={dayPost.media[0]?.mediaurl}
+              src={dayPost?.media[0]?.mediaurl}
               onClick={handleOnClick}
             />
             <div className="legends-container">

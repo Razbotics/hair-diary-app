@@ -7,6 +7,7 @@
   color: white;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .btn-container {
@@ -56,15 +57,35 @@
 }
 
 .card-left {
-  position: relative;
+  position: absolute;
   opacity: 0.3;
   transform: translateX(-120px) scale(0.9);
+  z-index: 140;
 }
 
 .card-right {
-  position: relative;
+  position: absolute;
   opacity: 0.3;
   transform: translateX(120px) scale(0.9);
+  z-index: 140;
+}
+
+.card-left-two {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-240px) scale(0.9);
+  z-index: 130;
+}
+
+.card-right-two {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(240px) scale(0.9);
+  z-index: 130;
+}
+
+.card-hidden {
+  display: none;
 }
 
 .card__image-container {

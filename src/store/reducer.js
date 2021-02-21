@@ -4,7 +4,7 @@ import moment from "moment";
 export const initialState = {
   date: moment(),
   posts: [],
-  dayPosts: [],
+  dayPostIndex: null,
   dayPostsVisible: false,
   loading: false,
   continuationToken: null,
@@ -13,7 +13,7 @@ export const initialState = {
 const ACTIONS = {
   EDIT_DATE: "edit_date",
   SET_POSTS: "set_posts",
-  SET_DAY_POSTS: "set_day_posts",
+  SET_DAY_POST_INDEX: "set_day_post_index",
   SET_DAY_POSTS_VISIBILITY: "set_visibility",
   SET_LOADING: "set_loading",
   SET_TOKEN: "set_token",
@@ -31,9 +31,9 @@ export const reducer = (state, action) => {
         draft.posts = [...draft.posts, ...action.payload];
       });
 
-    case ACTIONS.SET_DAY_POSTS:
+    case ACTIONS.SET_DAY_POST_INDEX:
       return produce(state, (draft) => {
-        draft.dayPosts = action.payload;
+        draft.dayPostIndex = action.payload;
       });
 
     case ACTIONS.SET_TOKEN:
@@ -50,13 +50,19 @@ export const reducer = (state, action) => {
       return produce(state, (draft) => {
         draft.loading = action.payload;
       });
+
+    default:
+      return state;
   }
 };
 
 export const actionTypes = {
   editDate: (date) => ({ type: ACTIONS.EDIT_DATE, payload: date }),
   setPosts: (posts) => ({ type: ACTIONS.SET_POSTS, payload: posts }),
-  setDayPosts: (posts) => ({ type: ACTIONS.SET_DAY_POSTS, payload: posts }),
+  setDayPostIndex: (index) => ({
+    type: ACTIONS.SET_DAY_POST_INDEX,
+    payload: index,
+  }),
   setContinuationToken: (token) => ({
     type: ACTIONS.SET_TOKEN,
     payload: token,
